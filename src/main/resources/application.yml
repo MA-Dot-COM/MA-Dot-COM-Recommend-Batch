@@ -1,0 +1,61 @@
+server:
+  port: 8999
+  servlet:
+    context-path: /
+    encoding:
+      charset: UTF-8
+      enabled: true
+      force: true
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: RDBMS_URL
+    username: comproject
+    password: comproject
+    hikari:
+      auto-commit: false
+  devtools:
+    restart:
+      enabled: false
+    livereload:
+      enabled: true
+  data:
+    mongodb:
+      uri: NOSQL_URI
+      authentication-database: admin
+      database: comproject
+  jpa:
+    generate-ddl: false
+    show-sql: true
+    database: mysql
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+    properties:
+      hibernate:
+        format_sql: true
+
+logging:
+  level:
+    root: info
+    com:
+      amazonaws:
+        util:
+          EC2MetadataUtils: error
+
+cloud:
+  aws:
+    region:
+      static: ap-northeast-2
+    stack:
+      auto: false
+    credentials:
+      instanceProfile: true
+
+mybatis:
+  mapper-locations: mybatis/**/*.xml
+  type-aliases-package: com.sorhive.recommend
+  configuration:
+    map-underscore-to-camel-case: true
+
+url:
+  friend: AI_FRIEND
