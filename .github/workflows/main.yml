@@ -70,7 +70,7 @@ jobs: # job - 하나의 인스턴스에서 여러 Step을 그룹시켜 실행하
       id: meta
       uses: docker/metadata-action@98669ae865ea3cffbcbaa878cf57c20bbf1c6c38
       with:
-        images: john782/springbootserver
+        images: john7820/batchserver
 
     - name: Build and push Docker image
       uses: docker/build-push-action@ad44023a93711e3deb337508980b4b5e9bcdc5dc
