@@ -53,7 +53,7 @@ public class RecommendJobScheduler {
 
         JobParameters jobParameters = new JobParameters(config);
         try {
-            JobExecution jobExecution = jobLauncher.run(recommendBatch.recommendJob(), jobParameters);
+             JobExecution jobExecution = jobLauncher.run(recommendBatch.recommendJob(), jobParameters);
         } catch (JobExecutionAlreadyRunningException
                  | JobRestartException
                  | JobInstanceAlreadyCompleteException
