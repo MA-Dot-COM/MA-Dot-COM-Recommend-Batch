@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sorhive.recommend.member.query.member.RecommendMapper">
+
+    <resultMap id="memberCodeResultMap" type="com.sorhive.recommend.member.query.member.MemberCodeData">
+        <id property="memberCode" column="member_code"/>
+    </resultMap>
+    
+    <select id="findAllMember" resultMap="memberCodeResultMap">
+        select member_code
+          from tbl_members
+         where member_delete_yn = 'N'
+    </select>
+
+    <select id="findAllMemberIsNotMemberCode" resultMap="memberCodeResultMap">
+        select member_code
+        from tbl_members
+        where member_delete_yn = 'N'
+         and not member_code = #{memberCode}
+    </select>
+
+    <select id="countRoomVisit" resultType="int">
+        select
+               count(room_visit_id)
+          from tbl_room_visits
+         where room_id = #{userMemberCode}
+           and member_code = #{guestMemberCode}
+    </select>
+    <select id="countLifingVisit" resultType="int">
+        select
+               count(lifing_visitor_code)
+          from tbl_lifing_visits
+         where lifing_writer_code = #{userMemberCode}
+           and lifing_visitor_code = #{guestMemberCode}
+    </select>
+    <select id="countGuestBook" resultType="int">
+        select
+               count(guestbook_id)
+          from tbl_guestbooks
+        where room_id = #{userMemberCode}
+          and guestbook_writer_code = #{guestMemberCode}
+          and guestbook_delete_yn = 'N'
+    </select>
+</mapper>
