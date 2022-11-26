@@ -1,6 +1,6 @@
-package com.sorhive.recommend.mongorecommend.command.domain.repository;
+package com.sorhive.recommend.recommend.command.domain.repository;
 
-import com.sorhive.recommend.mongorecommend.command.domain.model.MongoRecommend;
+import com.sorhive.recommend.recommend.command.domain.model.MongoRecommend;
 import org.springframework.data.mongodb.repository.MongoRepository;
 
 /**
