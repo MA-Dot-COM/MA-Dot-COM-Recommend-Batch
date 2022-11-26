@@ -1,4 +1,4 @@
-package com.sorhive.recommend.mongorecommend.command.domain.model;
+package com.sorhive.recommend.recommend.command.domain.model;
 
 import lombok.Getter;
 import org.springframework.data.mongodb.core.mapping.Document;

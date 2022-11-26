@@ -1,7 +1,7 @@
-package com.sorhive.recommend.mongorecommend.command.application.service;
+package com.sorhive.recommend.recommend.command.application.service;
 
-import com.sorhive.recommend.mongorecommend.command.domain.model.MongoRecommend;
-import com.sorhive.recommend.mongorecommend.command.domain.repository.MongoRecommendRepository;
+import com.sorhive.recommend.recommend.command.domain.model.MongoRecommend;
+import com.sorhive.recommend.recommend.command.domain.repository.MongoRecommendRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;

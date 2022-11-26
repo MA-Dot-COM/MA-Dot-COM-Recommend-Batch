@@ -6,7 +6,7 @@ import com.sorhive.recommend.member.query.member.AiRecommendDto;
 import com.sorhive.recommend.member.query.member.AiRecommendRequestDto;
 import com.sorhive.recommend.member.query.member.MemberCodeData;
 import com.sorhive.recommend.member.query.member.MemberQueryService;
-import com.sorhive.recommend.mongorecommend.command.application.service.MongoRecommendService;
+import com.sorhive.recommend.recommend.infra.RecommendInfraService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.batch.core.Job;
@@ -48,18 +48,18 @@ public class RecommendBatch {
     private final StepBuilderFactory stepBuilderFactory;
     private final MemberQueryService memberQueryService;
     private final ChattingQueryService chattingQueryService;
-    private final MongoRecommendService mongoRecommendService;
+    private final RecommendInfraService recommendInfraService;
     private AiRecommendRequestDto aiRecommendRequestDto;
     private ResponseEntity<Map> response;
     @Value("${url.friend}")
     private String friendUrl;
 
-    public RecommendBatch(JobBuilderFactory jobBuilderFactory, StepBuilderFactory stepBuilderFactory, MemberQueryService memberQueryService, ChattingQueryService chattingQueryService, MongoRecommendService mongoRecommendService) {
+    public RecommendBatch(JobBuilderFactory jobBuilderFactory, StepBuilderFactory stepBuilderFactory, MemberQueryService memberQueryService, ChattingQueryService chattingQueryService, RecommendInfraService recommendInfraService) {
         this.jobBuilderFactory = jobBuilderFactory;
         this.stepBuilderFactory = stepBuilderFactory;
         this.memberQueryService = memberQueryService;
         this.chattingQueryService = chattingQueryService;
-        this.mongoRecommendService = mongoRecommendService;
+        this.recommendInfraService = recommendInfraService;
     }
 
     @Bean
@@ -168,8 +168,8 @@ public class RecommendBatch {
                     List<List<String>> guestCodes = new ArrayList<>(response.getBody().values());
 
                     /* 몽고 DB에 친추 추천 배열 저장하기 */
-                    mongoRecommendService.createRecommend(memberCodes, guestCodes);
-                    
+                    recommendInfraService.createRecommend(memberCodes, guestCodes);
+
                     log.info("[recommendStep3] End==================");
 
                     return RepeatStatus.FINISHED;
