@@ -44,8 +44,8 @@ public class RecommendJobScheduler {
         this.recommendBatch = recommendBatch;
     }
 
-    // 10초에 한 번씩 실행
-    @Scheduled(cron = "0/10 * * * * *")
+    // 3시간에 한 번씩 실행
+    @Scheduled(cron = "0 0 0/3 * * *")
     public void testJobSchedule() {
         // 파라미터를 매번 다르게 설정하여 다른 Job Instance로 지정
         Map<String, JobParameter> config = new HashMap<>();
